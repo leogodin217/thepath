@@ -14,7 +14,11 @@
         {% for journey in journeys %}
             <tr><td>{{journey.name}}</td><td>{{journey.description}}</td>
             {% for trail in journey.trail_set.all %}
+                {% if trail.url %}
+                <tr><td></td><td><a href="{{trail.url}}">{{trail.name}}</a></td></tr>
+                {% else %}
                 <tr><td></td><td>{{trail.name}}</td></tr>
+                {% endif %}
             {% endfor %}
         {% endfor %}
     </table>
