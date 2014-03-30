@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,6 +13,9 @@
       <tr><th>Name</th><th>Description</th></tr>
         {% for journey in journeys %}
             <tr><td>{{journey.name}}</td><td>{{journey.description}}</td>
+            {% for trail in journey.trail_set.all %}
+                <tr><td></td><td>{{trail.name}}</td></tr>
+            {% endfor %}
         {% endfor %}
     </table>
 

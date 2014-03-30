@@ -22,6 +22,8 @@ class TestHomePageBehaviors(WebTest):
     def test_home_page_shows_journeys(self):
         "Given two journeys exist"
         journey1 = Journey.objects.create(name="Learn Django", description="Become the bomb when it comes to Django")
+        journey1.trail_set.create(name="trail 1", description="Trail 1 description")
+        journey1.trail_set.create(name="trail 2", description="Trail 2 description")
         journey2 = Journey.objects.create(name="Fix your brain", description="Become the bomb when it comes to brain hacking")
 
         "When I visit the home page"
@@ -30,5 +32,7 @@ class TestHomePageBehaviors(WebTest):
         "I should the name and description of both journeys"
         response.mustcontain(journey1.name)
         response.mustcontain(journey1.description)
+        response.mustcontain(journey1.trail_set.all()[0].name)
+        response.mustcontain(journey1.trail_set.all()[1].name)
         response.mustcontain(journey2.name)
         response.mustcontain(journey2.description)
