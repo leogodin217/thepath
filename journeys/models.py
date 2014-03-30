@@ -18,7 +18,7 @@ class Trail(models.Model):
 
     name = models.CharField(max_length=50)
     description = models.TextField()
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, blank=True)
     journey = models.ForeignKey(Journey)
 
     def __unicode__(self):
